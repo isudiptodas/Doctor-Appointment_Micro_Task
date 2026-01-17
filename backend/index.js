@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userAuth from './routes/user/userAuth.js';
 import doctorAuth from './routes/doctor/doctorAuth.js';
+import doctorData from './routes/user/doctorData.js';
 import { connectDB } from './config/connectDB.js';
 
 const app = express();
