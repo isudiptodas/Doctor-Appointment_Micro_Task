@@ -2,11 +2,12 @@ import jwt from 'jsonwebtoken';
 import express from 'express';
 import bcrypt from 'bcrypt';
 import { Hospital } from '../../models/Hospital.js';
+import { authenticate } from '../../middleware/authenticate.js';
 
 const router = express.Router();
 
 // hospital login
-router.post('/api/hospital/login', async (req, res) => {
+router.post('/api/hospital/login', authenticate, async (req, res) => {
   const { email, password } = req.body;
 
     try{
