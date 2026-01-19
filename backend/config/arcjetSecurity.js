@@ -1,5 +1,4 @@
 import arcjet, { shield, detectBot, tokenBucket } from "@arcjet/node";
-import { isSpoofedBot } from "@arcjet/inspect";
 
 export const arcjet = arcjet({
   key: process.env.ARCJET_KEY,
