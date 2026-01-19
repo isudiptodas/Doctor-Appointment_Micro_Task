@@ -2,11 +2,12 @@ import jwt from 'jsonwebtoken';
 import express from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../../models/User.js';
+import { arcjetProtect } from '../../middleware/arcjetProtect.js';
 
 const router = express.Router();
 
 // user login
-router.post('/api/user/login', async (req, res) => {
+router.post('/api/user/login', arcjetProtect, async (req, res) => {
   const { email, password } = req.body;
 
     try{
@@ -54,7 +55,7 @@ router.post('/api/user/login', async (req, res) => {
 });
 
 // user register
-router.post('/api/user/register', async (req, res) => {
+router.post('/api/user/register', arcjetProtect, async (req, res) => {
   const { name, email, password } = req.body;
  
     try{
