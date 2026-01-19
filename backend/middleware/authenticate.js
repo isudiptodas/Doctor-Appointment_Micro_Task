@@ -26,13 +26,7 @@ export const authenticate = async (req, res, next) => {
         message: 'Forbidden'
       });
     }
-  }
-  else if (decision.results.some(isSpoofedBot)) {
-    return res.status(403).json({
-      success: false,
-      message: 'Bot detected'
-    });
-  }
+ }
   
   const token = req.cookies.token;
 
