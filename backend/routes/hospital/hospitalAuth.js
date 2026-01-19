@@ -2,11 +2,12 @@ import jwt from 'jsonwebtoken';
 import express from 'express';
 import bcrypt from 'bcrypt';
 import { Hospital } from '../../models/Hospital.js';
+import { arcjetProtect } from '../../middleware/arcjetProtect.js';
 
 const router = express.Router();
 
 // hospital login
-router.post('/api/hospital/login', async (req, res) => {
+router.post('/api/hospital/login', arcjetProtect, async (req, res) => {
   const { email, password } = req.body;
 
     try{
@@ -54,7 +55,7 @@ router.post('/api/hospital/login', async (req, res) => {
 });
 
 // hospital register
-router.post('/api/hospital/register', async (req, res) => {
+router.post('/api/hospital/register', arcjetProtect, async (req, res) => {
   const { name, email, password, hospital } = req.body;
  
     try{
