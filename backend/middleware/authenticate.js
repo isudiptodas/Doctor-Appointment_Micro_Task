@@ -1,31 +1,6 @@
 import jwt from 'jsonwebtoken';
-import express from 'express';
-import { arcjet } from '../config/arcjetSecurity.js';
 
 export const authenticate = async (req, res, next) => {
-
-  const decision = await arcjet.protect(req, { requested: 5 }); 
-
-    if (decision.isDenied()) {
-      if (decision.reason.isRateLimit()) {
-        return res.status(429).json({
-        success: false,
-        message: 'Too many request'
-       });
-     }
-      else if (decision.reason.isBot()) {
-        return res.status(403).json({
-        success: false,
-        message: 'Bot detected'
-      });
-     }
-      else {
-        return res.status(403).json({
-        success: false,
-        message: 'Forbidden'
-      });
-    }
- }
   
   const token = req.cookies.token;
 
@@ -47,18 +22,18 @@ export const authenticate = async (req, res, next) => {
     const role = decoded.role;
     req.userData = decoded;
 
-    if(req.path.startsWith(roleRoutes[role])){
-      next();
+    if(!req.path.startsWith(roleRoutes[role])){
+        return res.status(403).json({
+         success: false,
+         message: 'Unauthorized'
+      });
     }
-    
-    return res.status(403).json({
-      success: false,
-      message: 'Unauthorized'
-    });
+
+    return next();
   }
   catch(err){
     console.log(err);
-    return res.status(505).json({
+    return res.status(401).json({
       success: false,
       message: 'Error validating token'
     });
