@@ -10,4 +10,5 @@
   <li>Email reminder for appointments</li>
   <li>Account recovery with email based OTP</li>
   <li>AI health consultation</li>
+  <li>User input validation</li>
 </ul>
