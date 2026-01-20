@@ -6,6 +6,7 @@ const doctorSchema = mongoose.Schema({
   password: {type: string, required: true},
   hospital: {type: string, required: true},
   speciality: {type: string, required: true},
+  gender: {type: string, required: true},
   verified: {type: boolean, required: false, default: false},
   created: {type: Date, required: false, default: Date.now}
 });
