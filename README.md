@@ -3,12 +3,18 @@
 
 <br/>
 
-<p><b>Features :</b></p>
+<p><b>Security:</b></p>
 <ul>
   <li>Email Validation</li>
   <li>Role based access control</li>
-  <li>Email reminder for appointments</li>
   <li>Account recovery with email based OTP</li>
-  <li>AI health consultation</li>
   <li>User input validation</li>
+</ul>
+
+<p><b>Features :</b></p>
+<ul>
+  <li>Schedule appointments upto 30 days in advance</li>
+  <li>Email reminder for appointments</li>
+  <li>AI disease detection</li>
+  <li>Medical report scanning</li>
 </ul>
