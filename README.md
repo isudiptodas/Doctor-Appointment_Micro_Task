@@ -1,5 +1,5 @@
-<h2>Doctor Appointment Booking</h2>
-<p><b>Tech Stack : </b> <i>React, MongoDB, Express, NodeJS, BullMQ, Redis, Node-Cron, Arcjet</i></p>
+<h2>Healthcare Management Platform</h2>
+<p><b>Tech Stack : </b> <i>React, MongoDB, Express, NodeJS, BullMQ, Redis, Node-Cron, Arcjet, Zod</i></p>
 
 <br/>
 
