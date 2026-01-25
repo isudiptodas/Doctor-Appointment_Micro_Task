@@ -1,5 +1,5 @@
 <h2>Healthcare Management Platform</h2>
-<p><b>Tech Stack : </b> <i>React, MongoDB, Express, NodeJS, BullMQ, Redis, Node-Cron, Arcjet, Zod, Zustand</i></p>
+<p><b>Tech Stack : </b> <i>React, MongoDB, Express, NodeJS, BullMQ, Redis, Node-Cron, Arcjet, Zustand</i></p>
 
 <br/>
 
