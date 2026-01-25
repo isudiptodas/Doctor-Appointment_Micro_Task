@@ -5,7 +5,7 @@ import { User } from '../../models/User.js';
 import { Doctor } from '../../models/Doctor.js';
 import { Hospital } from '../../models/Hospital.js';
 import { arcjetProtect } from '../../middleware/arcjetProtect.js';
-
+ 
 const router = express.Router();
 
 // doctor login
@@ -19,13 +19,6 @@ router.post('/api/doctor/login', arcjetProtect, async (req, res) => {
             return res.status(404).json({
                 success: false,
                 message: "User not found",
-            });
-        }
-
-        if(!present.verified){
-          return res.status(403).json({
-                success: false,
-                message: "You are not verified by your hospital",
             });
         }
 
@@ -50,6 +43,7 @@ router.post('/api/doctor/login', arcjetProtect, async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Login seccessfull",
+            role: 'doctor',
             token
         });
 
@@ -65,7 +59,7 @@ router.post('/api/doctor/login', arcjetProtect, async (req, res) => {
 
 // doctor register
 router.post('/api/doctor/register', arcjetProtect, async (req, res) => {
-  const { name, email, password, hospital, speciality, gender } = req.body;
+  const { name, email, password } = req.body;
  
     try{
         const present1 = await User.findOne({email});
@@ -85,9 +79,6 @@ router.post('/api/doctor/register', arcjetProtect, async (req, res) => {
             name, 
             email, 
             password: hashedPassword,
-            hospital, 
-            speciality, 
-            gender
         });
 
         await newDoctor.save();
@@ -106,4 +97,4 @@ router.post('/api/doctor/register', arcjetProtect, async (req, res) => {
     }
 });
 
-export default router:
+export default router;

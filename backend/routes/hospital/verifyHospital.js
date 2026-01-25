@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import express from 'express';
 import { authenticate } from '../../middleware/authenticate.js';
 import { Hospital } from '../../models/Hospital.js';
@@ -6,7 +5,7 @@ import { Hospital } from '../../models/Hospital.js';
 const router = express.Router();
 
 // verify for valid hospital on every page
-router.get('/api/hospital/verify', authenticate, (req, res) = > {
+router.get('/api/hospital/verify', authenticate, (req, res) => {
   return res.status(200).json({
     success: true,
     message: 'hospital verified'
@@ -14,7 +13,7 @@ router.get('/api/hospital/verify', authenticate, (req, res) = > {
 });
 
 // retrieves current logged in hospital data
-router.get('/api/hospital/get-data', authenticate, (req, res) = > {
+router.get('/api/hospital/get-data', authenticate, async (req, res) => {
 
   const hospitalData = req.userData;
 

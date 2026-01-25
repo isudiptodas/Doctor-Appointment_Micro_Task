@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/api/all-doctors', async (req, res) => {
    try{
      const found = await Doctor.find();
-
+ 
      return res.status(200).json({
        success: true,
        message: 'Fetched all doctors',

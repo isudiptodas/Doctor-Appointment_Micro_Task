@@ -5,7 +5,7 @@ import { User } from '../../models/User.js';
 import { Doctor } from '../../models/Doctor.js';
 import { Hospital } from '../../models/Hospital.js';
 import { arcjetProtect } from '../../middleware/arcjetProtect.js';
-
+ 
 const router = express.Router();
 
 // user login
@@ -43,6 +43,7 @@ router.post('/api/user/login', arcjetProtect, async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Login seccessfull",
+            role: 'user',
             token
         });
 
@@ -96,4 +97,4 @@ router.post('/api/user/register', arcjetProtect, async (req, res) => {
     }
 });
 
-export default router:
+export default router;

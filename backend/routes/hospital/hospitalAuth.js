@@ -97,4 +97,4 @@ router.post('/api/hospital/register', arcjetProtect, async (req, res) => {
     }
 });
 
-export default router:
+export default router;

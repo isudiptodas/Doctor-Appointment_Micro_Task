@@ -1,9 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+
 import userAuth from './routes/user/userAuth.js';
+import verifyUser from './routes/user/verifyUser.js';
+
 import doctorAuth from './routes/doctor/doctorAuth.js';
-import doctorData from './routes/user/doctorData.js';
+import doctorData from './routes/doctor/doctorData.js';
+import verifyDoctor from './routes/doctor/verifyDoctor.js';
+
+import hospitalAuth from './routes/hospital/hospitalAuth.js';
+import verifyHospital from './routes/hospital/verifyHospital.js';
+
 import { connectDB } from './config/connectDB.js';
 
 const app = express();
@@ -15,12 +23,19 @@ app.use(cors({
     credentials: true
 }));
 
-const port = process.env.PORT || 5000:
+const port = process.env.PORT || 5000;
 
-connectDb();
+connectDB();
 
 app.use(userAuth);
+app.use(verifyUser);
+
 app.use(doctorAuth);
+app.use(doctorData);
+app.use(verifyDoctor);
+
+app.use(hospitalAuth);
+app.use(verifyHospital);
 
 app.listen(port, () => {
   console.log(`server started`);

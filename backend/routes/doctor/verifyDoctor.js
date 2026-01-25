@@ -6,7 +6,7 @@ import { Doctor } from '../../models/Doctor.js';
 const router = express.Router();
 
 // verify for valid doctor on every page
-router.get('/api/doctor/verify', authenticate, (req, res) = > {
+router.get('/api/doctor/verify', authenticate, (req, res) => {
   return res.status(200).json({
     success: true,
     message: 'doctor verified'
@@ -14,7 +14,7 @@ router.get('/api/doctor/verify', authenticate, (req, res) = > {
 });
 
 // retrieves current logged in doctors data
-router.get('/api/doctor/get-data', authenticate, (req, res) = > {
+router.get('/api/doctor/get-data', authenticate, async (req, res) => {
 
   const doctorData = req.userData;
 

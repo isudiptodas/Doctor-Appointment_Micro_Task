@@ -1,12 +1,11 @@
-import jwt from 'jsonwebtoken';
 import express from 'express';
 import { authenticate } from '../../middleware/authenticate.js';
 import { User } from '../../models/User.js';
-
+ 
 const router = express.Router();
 
 // verify for valid user on every page
-router.get('/api/user/verify', authenticate, (req, res) = > {
+router.get('/api/user/verify', authenticate, (req, res) => {
   return res.status(200).json({
     success: true,
     message: 'user verified'
@@ -14,7 +13,7 @@ router.get('/api/user/verify', authenticate, (req, res) = > {
 });
 
 // retrieves current logged in users data
-router.get('/api/user/get-data', authenticate, (req, res) = > {
+router.get('/api/user/get-data', authenticate, async (req, res) => {
 
   const userData = req.userData;
 
