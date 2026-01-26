@@ -1,9 +1,7 @@
-import Redis from 'ioredis';
-
-export const redisConnect = new Redis({
+export const redisConnect = {
     host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT,
+    port: Number(process.env.REDIS_PORT),
     password: process.env.REDIS_PASSWORD,
     username: process.env.REDIS_USERNAME,
     db: 0
-});
+};

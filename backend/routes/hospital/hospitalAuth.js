@@ -38,7 +38,8 @@ router.post('/api/hospital/login', arcjetProtect, async (req, res) => {
             httpOnly: true,
             maxAge: 840000,
             secure: false,
-            sameSite: 'strict'
+            sameSite: 'lax',
+            path: '/'
         });
 
         return res.status(200).json({

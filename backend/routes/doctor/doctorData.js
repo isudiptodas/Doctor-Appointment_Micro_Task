@@ -1,12 +1,12 @@
 import express from 'express';
 import { Doctor } from '../../models/Doctor.js';
-
+ 
 const router = express.Router();
 
 // fetch all available doctors list
 router.get('/api/all-doctors', async (req, res) => {
   try {
-    const found = await Doctor.find({ verified: true });
+    const found = await Doctor.find();
 
     return res.status(200).json({
       success: true,

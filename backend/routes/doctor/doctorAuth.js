@@ -36,9 +36,10 @@ router.post('/api/doctor/login', arcjetProtect, async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 840000,
+            maxAge: 4 * 60 * 60 * 1000,
             secure: false,
-            sameSite: 'strict'
+            sameSite: 'lax',
+            path: '/'
         });
 
         return res.status(200).json({

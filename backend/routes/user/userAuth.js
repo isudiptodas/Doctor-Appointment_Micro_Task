@@ -10,7 +10,7 @@ import axios from 'axios';
 const router = express.Router();
 
 // user login
-router.post('/api/user/login', arcjetProtect, async (req, res) => {
+router.post('/api/user/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -38,7 +38,8 @@ router.post('/api/user/login', arcjetProtect, async (req, res) => {
             httpOnly: true,
             maxAge: 840000,
             secure: false,
-            sameSite: 'strict'
+            sameSite: 'lax',
+            path: '/'
         });
 
         return res.status(200).json({
@@ -59,7 +60,7 @@ router.post('/api/user/login', arcjetProtect, async (req, res) => {
 });
 
 // user register
-router.post('/api/user/register', arcjetProtect, async (req, res) => {
+router.post('/api/user/register', async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
