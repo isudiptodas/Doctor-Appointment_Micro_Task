@@ -30,7 +30,7 @@ function Login() {
     try {
       const res = await axios.post(`http://localhost:5000${url}`, {
         email: email.trim(), password: password.trim()
-      }, { withCredentials: true});
+      }, { withCredentials: true });
 
       if (res.status === 200) {
         toast.success("Success");
@@ -87,6 +87,12 @@ function Login() {
 
           <p className={`w-full text-center text-black font-Telegraf text-[12px] mt-2`}>Don't have an account ?</p>
           <Link to='/auth/register' className={`w-full text-center font-semibold text-blue-500 font-Telegraf text-sm`}>Create account</Link>
+
+          <p className={`w-full text-center text-black font-Telegraf font-semibold text-[14px] my-1`}>or</p>
+
+          <p className={`w-full text-center text-black font-Telegraf text-[12px] mt-2`}>Forgot your password ?</p>
+          <Link to='/auth/recovery' className={`w-full text-center font-semibold text-blue-500 font-Telegraf text-sm`}>Recover here</Link>
+
         </div>
       </div>
     </>

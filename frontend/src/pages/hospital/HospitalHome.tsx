@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { LuPersonStanding } from "react-icons/lu";
 import { FaGraduationCap } from "react-icons/fa";
 import { FaRegHospital } from "react-icons/fa";
 import { toast } from 'sonner';
 import { MdVerifiedUser } from "react-icons/md";
+import { useLocation } from 'react-router-dom';
+import HospitalNavbar from '../../components/HospitalNavbar';
+import { hospitalMenuStore } from '../../zustand/hospitalMenuStore';
 
 type Doctor = {
   _id: string,
@@ -20,9 +22,21 @@ type Doctor = {
 
 function HospitalHome() {
 
+  const location = useLocation();
   const [allDoctors, setAllDoctors] = useState<Doctor[] | null>(null);
   const [filteredDoctors, setFilteredDoctors] = useState<Doctor[] | null | undefined>(null);
   const [option, setOption] = useState('pending');
+  const { isOpen } = hospitalMenuStore();
+
+
+  useEffect(() => {
+    if(isOpen){
+      document.body.style.overflowY = 'hidden';
+    }
+    else{
+      document.body.style.overflowY = 'auto';
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const fetchAllDoctors = async () => {
@@ -31,7 +45,6 @@ function HospitalHome() {
           withCredentials: true
         });
 
-        console.log(res.data.found);
         setAllDoctors(res.data.found);
 
         if (res.data.found) {
@@ -72,7 +85,7 @@ function HospitalHome() {
         id
       }, { withCredentials: true });
 
-      if(res.status === 200){
+      if (res.status === 200) {
         toast.success("Doctor Approved");
       }
     } catch (err: any) {
@@ -91,7 +104,7 @@ function HospitalHome() {
         id
       }, { withCredentials: true });
 
-      if(res.status === 200){
+      if (res.status === 200) {
         toast.success("Doctor Removed");
         const filtered = allDoctors?.filter((doc) => {
           return doc._id !== id
@@ -112,22 +125,33 @@ function HospitalHome() {
   return (
     <>
       <div className={`w-full pb-10 min-h-screen relative flex flex-col justify-start items-center overflow-hidden`}>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: 'easeInOut' }} className={`w-full border-b-2 border-b-orange-500 text-black text-lg text-center fixed top-0 py-4 lg:py-5 backdrop-blur-2xl bg-white/20 font-Lora`}>MediLab</motion.p>
 
-        <div className={`w-[80%] mt-20 lg:mt-24 pt-3 border-b-2 rounded-b-lg border-b-orange-400 md:w-[50%] lg:w-[30%] flex justify-center items-center gap-3`}>
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            backgroundImage: `
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+        radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
+        radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
+      `,
+            backgroundSize: '40px 40px, 40px 40px, 40px 40px, 40px 40px',
+          }}
+        />
+
+        <HospitalNavbar pathname={location.pathname}/>
+
+        <div className={`w-[80%] ${isOpen ? "opacity-20" : "opacity-100"} duration-200 ease-in-out z-20 mt-20 lg:mt-24 pt-3 border-b-2 rounded-b-lg border-b-orange-400 md:w-[50%] lg:w-[30%] flex justify-center items-center gap-3`}>
           <p onClick={() => setOption('pending')} className={`w-full text-center cursor-pointer px-4 py-2 rounded-md ${option === 'pending' ? "bg-orange-400 text-white font-semibold" : "bg-white text-black"} duration-150 ease-in-out text-sm`}>Pending</p>
           <p onClick={() => setOption('verified')} className={`w-full text-center cursor-pointer px-4 py-2 rounded-md ${option === 'verified' ? "bg-orange-400 text-white font-semibold" : "bg-white text-black"} duration-150 ease-in-out text-sm`}>Verified</p>
         </div>
 
-        <div className={`w-full mt-5 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 px-3 py-5`}>
+        <div className={`w-full ${isOpen ? "opacity-20" : "opacity-100"} duration-200 ease-in-out z-20 mt-5 h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 px-3 py-5`}>
           {filteredDoctors && filteredDoctors.map((doc, index) => {
             return <div key={index} className={`w-full hover:shadow-xl duration-200 ease-in-out cursor-pointer rounded-lg bg-gray-100 px-3 py-2 h-auto flex flex-col justify-start items-center`}>
               <h1 className={`w-full text-start text-xl font-semibold font-Telegraf`}>{doc.name}</h1>
               <p className={`w-full ${doc.gender ? "block" : "hidden"} text-start text-[12px] flex justify-start items-center gap-2 font-Telegraf`}><LuPersonStanding /> {doc.gender}</p>
-              <p className={`w-full ${doc.verified ? "block" : "hidden"} mb-2 text-start text-sm text-green-500 font-semibold flex justify-start items-center gap-1 font-Telegraf`}><MdVerifiedUser className='text-sm'/> Verified</p>
+              <p className={`w-full ${doc.verified ? "block" : "hidden"} mb-2 text-start text-sm text-green-500 font-semibold flex justify-start items-center gap-1 font-Telegraf`}><MdVerifiedUser className='text-sm' /> Verified</p>
               <p className={`w-full ${doc.speciality ? "block" : "hidden"} text-start text-[12px] flex justify-start items-center gap-2 font-Telegraf`}><FaGraduationCap /> {doc.speciality}</p>
               <p className={`w-full ${doc.hospital ? "block" : "hidden"} text-start text-[12px] flex justify-start items-center gap-2 font-Telegraf`}><FaRegHospital /> {doc.hospital}</p>
               <div className={`w-full ${doc.verified ? "hidden" : "block"} mt-2 flex justify-center items-center gap-3`}>
