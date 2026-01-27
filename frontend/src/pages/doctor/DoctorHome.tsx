@@ -47,7 +47,7 @@ function DoctorHome() {
            onClick={() => setOptionVisible(!optionVisible)}
             animate={{ height: optionVisible ? "135px" : "50px" }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={`w-[95%] md:hidden flex justify-between items-start py-3 px-3 border border-orange-500 rounded-md bg-white shadow-2xl mt-20 overflow-hidden relative`}>
+            className={`w-[95%] md:hidden flex justify-between items-start py-3 px-3 border border-orange-500 rounded-md bg-white shadow-lg mt-20 overflow-hidden relative`}>
             <p className={`font-Telegraf text-lg text-orange-400 font-semibold capitalize`}>{appointmentOption}</p>
             <span><LuChevronsUpDown /></span>
 

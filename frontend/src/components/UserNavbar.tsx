@@ -15,7 +15,7 @@ function UserNavbar({ pathname }: { pathname: string }) {
                 <span onClick={toggleMenu} className={`w-auto lg:hidden rounded-full bg-linear-to-br from-orange-400 to-orange-600 text-white text-lg absolute right-5 p-2`}><CiMenuBurger /></span>
 
                 <div className={`w-auto hidden lg:flex justify-center items-center gap-1`}>
-                    <p className={`w-auto border-b-2 px-5 py-2 rounded-md ${pathname === '/user/home' ? "border-b-orange-400 text-orange-400 font-semibold" : "border-b-transparent text-black"} hover:bg-gray-100 duration-200 ease-in-out cursor-pointer`}>Home</p>
+                    <Link to='/user/home' className={`w-auto border-b-2 px-5 py-2 rounded-md ${pathname === '/user/home' ? "border-b-orange-400 text-orange-400 font-semibold" : "border-b-transparent text-black"} hover:bg-gray-100 duration-200 ease-in-out cursor-pointer`}>Home</Link>
                     <Link to='/user/booking' className={`w-auto border-b-2 px-5 py-2 rounded-md ${pathname === '/user/booking' ? "border-b-orange-400 text-orange-400 font-semibold" : "border-b-transparent text-black"} hover:bg-gray-100 duration-200 ease-in-out cursor-pointer`}>Booking</Link>
                     <p className={`w-auto border-b-2 px-5 py-2 rounded-md ${pathname === '/user/report' ? "border-b-orange-400 text-orange-400 font-semibold" : "border-b-transparent text-black"} hover:bg-gray-100 duration-200 ease-in-out cursor-pointer`}>Report Analysis</p>
                     <p className={`w-auto border-b-2 px-5 py-2 rounded-md ${pathname === '/user/detection' ? "border-b-orange-400 text-orange-400 font-semibold" : "border-b-transparent text-black"} hover:bg-gray-100 duration-200 ease-in-out cursor-pointer`}>Disease Detection</p>
@@ -32,7 +32,7 @@ function UserNavbar({ pathname }: { pathname: string }) {
                 <p className={`w-full text-black text-lg py-3 text-center font-Lora`}>MediLab</p>
                 <div className={`w-[90%] mb-8 h-0.5 bg-linear-to-r from-white via-orange-400 to-white`}></div>
 
-                <p className={`w-full text-start font-Telegraf text-2xl px-4 py-2 ${pathname === '/user/home' ? "text-orange-400 font-semibold" : "text-black font-normal"}`}>Home</p>
+                <Link to='/user/home' className={`w-full text-start font-Telegraf text-2xl px-4 py-2 ${pathname === '/user/home' ? "text-orange-400 font-semibold" : "text-black font-normal"}`}>Home</Link>
                 <Link to='/user/booking' className={`w-full text-start font-Telegraf text-2xl px-4 py-2 ${pathname === '/user/booking' ? "text-orange-400 font-semibold" : "text-black font-normal"}`}>Booking</Link>
                 <p className={`w-full text-start font-Telegraf text-2xl px-4 py-2 ${pathname === '/user/report' ? "text-orange-400 font-semibold" : "text-black font-normal"}`}>Report Analysis</p>
                 <p className={`w-full text-start font-Telegraf text-2xl px-4 py-2 ${pathname === '/user/detection' ? "text-orange-400 font-semibold" : "text-black font-normal"}`}>Disease Detection</p>
