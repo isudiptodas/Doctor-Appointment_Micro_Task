@@ -9,7 +9,6 @@
   <li>Role based access control</li>
   <li>Account recovery with email based OTP</li>
   <li>User input validation</li>
-  <li>Email based account recovery</li>
 </ul>
 
 <p><b>Features :</b></p>
