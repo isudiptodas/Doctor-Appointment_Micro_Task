@@ -133,5 +133,26 @@ export const emailWorker = new Worker('email', async job => {
         }
     }
 
+    // notify users if any appointment is scheduled today
+    if (job.name === 'appointment-today') {
+        try {
+            const { name, doctorName, time } = job.data;
+            const { data, error } = await resend.emails.send({
+                from: process.env.RESEND_EMAIL,
+                to: [email],
+                subject: 'Appointment Today',
+                html: `<h1>MediLab</h1>\n<p>Hello ${name}, this mail is to notify you that an appointment
+                      is scheduled today with <b>${doctorName}</b> between <b>${time}</b>.\n\n <p>We recommend you to reach 
+                      the location 10-15 mins earlier to avoid long queues (in case there is a holiday).\ \n Reach safely\n Thank you</p></p>`
+            });
+
+            if (error) {
+                console.log(error);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 }, { connection: redisConnect });
 

@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import userAuth from './routes/user/userAuth.js';
 import verifyUser from './routes/user/verifyUser.js';
 import appointmentBook from './routes/user/bookAppointment.js';
+import reportAnalyze from './routes/user/reportAnalysis.js';
 
 import doctorAuth from './routes/doctor/doctorAuth.js';
 import doctorData from './routes/doctor/doctorData.js';
@@ -21,6 +22,8 @@ import query from './routes/queryMessage.js';
 import passwordRecovery from './routes/passwordRecovery.js';
 
 import { emailQueue, emailWorker } from './queues/emailQueue.js';
+import './scripts/sendEmail.js';
+
 import { connectDB } from './config/connectDB.js';
 
 const app = express();
@@ -39,6 +42,7 @@ connectDB();
 app.use(userAuth);
 app.use(verifyUser);
 app.use(appointmentBook);
+app.use(reportAnalyze);
 
 app.use(doctorAuth);
 app.use(doctorData);
