@@ -9,6 +9,7 @@ import userAuth from './routes/user/userAuth.js';
 import verifyUser from './routes/user/verifyUser.js';
 import appointmentBook from './routes/user/bookAppointment.js';
 import reportAnalyze from './routes/user/reportAnalysis.js';
+import diseaseDetect from './routes/user/detectDisease.js';
 
 import doctorAuth from './routes/doctor/doctorAuth.js';
 import doctorData from './routes/doctor/doctorData.js';
@@ -43,6 +44,7 @@ app.use(userAuth);
 app.use(verifyUser);
 app.use(appointmentBook);
 app.use(reportAnalyze);
+app.use(diseaseDetect);
 
 app.use(doctorAuth);
 app.use(doctorData);

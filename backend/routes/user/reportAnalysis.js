@@ -5,7 +5,7 @@ import { GoogleGenAI, ThinkingLevel } from "@google/genai";
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
-
+ 
 router.post(`/api/user/analyze-report`, authenticate, upload.single("file"), async (req, res) => {
 
     if (!req.file) {
