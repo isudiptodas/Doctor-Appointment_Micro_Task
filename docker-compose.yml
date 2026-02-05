@@ -29,4 +29,6 @@ services:
       - backend
     volumes:
       - ./frontend:/app
-  
+
+volumes:
+  redis_data:
