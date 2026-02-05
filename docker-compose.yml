@@ -13,7 +13,7 @@ services:
     ports: 
       - "5000:5000"
     env_file:
-      - ./env
+      - ./.env
     depends_on:
       - redis
     volumes:
@@ -24,7 +24,7 @@ services:
     ports: 
       - "5173:5173"
     env_file:
-      - ./env
+      - ./.env
     depends_on:
       - backend
     volumes:
@@ -32,3 +32,4 @@ services:
 
 volumes:
   redis_data:
+
